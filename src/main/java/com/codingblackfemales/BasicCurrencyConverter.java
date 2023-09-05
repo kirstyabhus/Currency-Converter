@@ -2,18 +2,15 @@ package com.codingblackfemales;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class BasicCurrencyConverter implements CurrencyConverter {
 
     // will return the converted amount (conversion from source to destination
     // currency)
-    /*
-     * public double convertCurrency(String sourceCurrencyCose, String
-     * destinationCurrencyCode, double amount) {
-     * 
-     * }
-     */
+
+    public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
+        return 1.0; // place holder
+    }
 
     // will return an array of available currency codes
     public String[] getCurrencyCodes() {
@@ -30,15 +27,15 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         int i = 0;
         for (String code : exchangeRates.keySet()) {
             currencyCodes[i] = code;
+            i++;
         }
 
         return currencyCodes;
     }
-    /*
-     * // will return the exchange rate between the provided currencies.
-     * public double getExchangeRate(String sourceCurrencyCode, String
-     * destinationCurrencyCode) {
-     * 
-     * }
-     */
+
+    // will return the exchange rate between the provided currencies.
+    public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) {
+        return 1.0; // place holder
+    }
+
 }

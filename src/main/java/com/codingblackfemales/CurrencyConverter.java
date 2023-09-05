@@ -4,12 +4,12 @@ public interface CurrencyConverter {
 
     // will return the converted amount (conversion from source to destination
     // currency)
-    double convertCurrency(String sourceCurrencyCose, String destinationCurrencyCode, double amount);
+    public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount);
 
     // will return an array of available currency codes
-    String[] getCurrencyCodes();
+    public String[] getCurrencyCodes();
 
     // will return the exchange rate between the provided currencies.
-    double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode);
+    public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode);
 
 }
