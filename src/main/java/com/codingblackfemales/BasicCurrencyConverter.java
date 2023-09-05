@@ -7,9 +7,9 @@ public class BasicCurrencyConverter implements CurrencyConverter {
 
     // will return the converted amount (conversion from source to destination
     // currency)
-
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
-        return 1.0; // place holder
+        return 0; // place holder
+        // TODO handle exception for Invalid or null amount.
     }
 
     // will return an array of available currency codes
@@ -35,7 +35,21 @@ public class BasicCurrencyConverter implements CurrencyConverter {
 
     // will return the exchange rate between the provided currencies.
     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) {
-        return 1.0; // place holder
+        // create new instance of the CurrenciesGBP class (to access its methods)
+        CurrenciesGBP currenciesGBP = new CurrenciesGBP();
+
+        // get the exchange rates (hash map)
+        HashMap<String, Double> exchangeRates = currenciesGBP.getAllExchangeRates();
+
+        // for GBP source, return the exchnge rate for destination currency
+        if (sourceCurrencyCode == "GBP" || sourceCurrencyCode == "gbp") {
+            return exchangeRates.get(destinationCurrencyCode);
+        }
+
+        // TODO handle exception for Invalid or missing source currency code.
+        // TODO handle exception for Invalid or missing destination currency code.
+
+        return 0;
     }
 
 }
