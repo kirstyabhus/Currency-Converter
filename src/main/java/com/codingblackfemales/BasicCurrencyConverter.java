@@ -2,6 +2,8 @@ package com.codingblackfemales;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 public class BasicCurrencyConverter implements CurrencyConverter {
 
@@ -9,6 +11,7 @@ public class BasicCurrencyConverter implements CurrencyConverter {
     // currency)
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
         return 0; // place holder
+
         // TODO handle exception for Invalid or null amount.
     }
 
@@ -20,17 +23,15 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         // get the exchange rates (hash map)
         HashMap<String, Double> exchangeRates = currenciesGBP.getAllExchangeRates();
 
-        // create a new array, the size of the key set (to store the key codes)
-        String[] currencyCodes = new String[exchangeRates.size()];
+        // create & store a String set of the currency codes from the exchangeRates
+        // HashMap
+        Set<String> currencyCodesSet = new HashSet<>(exchangeRates.keySet());
 
-        // transverse through the set of key codes, adding each key to the array
-        int i = 0;
-        for (String code : exchangeRates.keySet()) {
-            currencyCodes[i] = code;
-            i++;
-        }
+        // return a String array containing the currencyCode elements of the set
+        String[] currencyCodes = currencyCodesSet.toArray(new String[exchangeRates.size()]);
 
         return currencyCodes;
+
     }
 
     // will return the exchange rate between the provided currencies.

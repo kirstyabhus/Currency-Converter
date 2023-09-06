@@ -12,7 +12,7 @@ public class Main {
         System.out.println(Arrays.toString(converter.getCurrencyCodes()));
 
         // output exchange rate
-        System.out.println(converter.getExchangeRate("GBP", "EUR"));
+        // System.out.println(converter.getExchangeRate("GBP", "EUR"));
 
     }
 }
