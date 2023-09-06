@@ -28,6 +28,7 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         Set<String> currencyCodesSet = new HashSet<>(exchangeRates.keySet());
 
         // return a String array containing the currencyCode elements of the set
+        // new array is the same size as the currency code set
         String[] currencyCodes = currencyCodesSet.toArray(new String[exchangeRates.size()]);
 
         return currencyCodes;
@@ -42,15 +43,16 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         // get the exchange rates (hash map)
         HashMap<String, Double> exchangeRates = currenciesGBP.getAllExchangeRates();
 
-        // for GBP source, return the exchnge rate for destination currency
-        if (sourceCurrencyCode == "GBP" || sourceCurrencyCode == "gbp") {
-            return exchangeRates.get(destinationCurrencyCode);
-        }
+        // calculate exchange rate between currencies using GBP exchange rate
+        // (sourceCurrencyAmount / sourceCurrencyGBPExchangeR) *
+        // destinationCurrencyGBPExchangeR = destinationCurrencyAmount
+        // so below gives exchange rate
+        double exchangeRate = exchangeRates.get(destinationCurrencyCode) / exchangeRates.get(sourceCurrencyCode);
 
         // TODO handle exception for Invalid or missing source currency code.
         // TODO handle exception for Invalid or missing destination currency code.
 
-        return 0;
+        return exchangeRate;
     }
 
 }
