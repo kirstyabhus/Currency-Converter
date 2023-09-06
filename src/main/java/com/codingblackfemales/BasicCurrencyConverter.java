@@ -10,7 +10,10 @@ public class BasicCurrencyConverter implements CurrencyConverter {
     // will return the converted amount (conversion from source to destination
     // currency)
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
-        return 0; // place holder
+        // calculate the destination amount, after getting the ecxhange rate
+        double destinationAmount = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
+
+        return destinationAmount;
 
         // TODO handle exception for Invalid or null amount.
     }
@@ -44,9 +47,6 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         HashMap<String, Double> exchangeRates = currenciesGBP.getAllExchangeRates();
 
         // calculate exchange rate between currencies using GBP exchange rate
-        // (sourceCurrencyAmount / sourceCurrencyGBPExchangeR) *
-        // destinationCurrencyGBPExchangeR = destinationCurrencyAmount
-        // so below gives exchange rate
         double exchangeRate = exchangeRates.get(destinationCurrencyCode) / exchangeRates.get(sourceCurrencyCode);
 
         // TODO handle exception for Invalid or missing source currency code.
