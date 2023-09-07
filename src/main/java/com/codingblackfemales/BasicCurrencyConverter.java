@@ -6,11 +6,22 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class BasicCurrencyConverter implements CurrencyConverter {
+    double errorValue = 0.0;
+    HashMap<String, Double> currenciesGBP;
+
+    // add constuctor
+    public BasicCurrencyConverter(Currencies currencies) {
+        this.currenciesGBP = currencies.getAllExchangeRates();
+    }
 
     // will return the converted amount (conversion from source to destination
     // currency)
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
-        // calculate the destination amount, after getting the ecxhange rate
+
+        // TODO add Try-catch with return in try
+        // TODO try throws again
+
+        // calculate the destination amount, after getting the exchange rate
         double destinationAmount = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
 
         return destinationAmount;
