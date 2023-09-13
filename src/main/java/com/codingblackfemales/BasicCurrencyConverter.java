@@ -1,6 +1,5 @@
 package com.codingblackfemales;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -22,8 +21,10 @@ public class BasicCurrencyConverter implements CurrencyConverter {
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
 
         currencyExceptions currencyExceptions = new currencyExceptions();
-        double exceptionValue = currencyExceptions.findException(sourceCurrencyCode, destinationCurrencyCode, amount);
+        double exceptionValue = currencyExceptions.findException(sourceCurrencyCode, destinationCurrencyCode, amount,
+                currenciesGBP);
 
+        // Exceptions
         if (exceptionValue == 0.0) {
             return 0.0;
         }
@@ -35,8 +36,6 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         double destinationAmount = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
 
         return destinationAmount;
-
-        // TODO handle exception for Invalid or null amount.
     }
 
     // will return an array of available currency codes
@@ -69,9 +68,6 @@ public class BasicCurrencyConverter implements CurrencyConverter {
 
         // calculate exchange rate between currencies using GBP exchange rate
         double exchangeRate = currenciesGBP.get(destinationCurrencyCode) / currenciesGBP.get(sourceCurrencyCode);
-
-        // TODO handle exception for Invalid or missing source currency code.
-        // TODO handle exception for Invalid or missing destination currency code.
 
         return exchangeRate;
     }
