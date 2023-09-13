@@ -8,11 +8,11 @@ import com.codingblackfemales.exceptions.currencyExceptions;
 import java.util.HashSet;
 
 public class BasicCurrencyConverter implements CurrencyConverter {
-    // double errorValue = 0.0;
     HashMap<String, Double> currenciesGBP;
 
     // add constuctor
     public BasicCurrencyConverter(Currencies currencies) {
+        // will get the exchange rates HashMap from the given currencies
         this.currenciesGBP = currencies.getAllExchangeRates();
     }
 
@@ -40,19 +40,13 @@ public class BasicCurrencyConverter implements CurrencyConverter {
 
     // will return an array of available currency codes
     public String[] getCurrencyCodes() {
-        // create new instance of the CurrenciesGBP class (to access its methods)
-        CurrenciesGBP currenciesGBP = new CurrenciesGBP();
-
-        // get the exchange rates (hash map)
-        HashMap<String, Double> exchangeRates = currenciesGBP.getAllExchangeRates();
-
         // create & store a String set of the currency codes from the exchangeRates
         // HashMap
-        Set<String> currencyCodesSet = new HashSet<>(exchangeRates.keySet());
+        Set<String> currencyCodesSet = new HashSet<>(currenciesGBP.keySet());
 
         // return a String array containing the currencyCode elements of the set
         // new array is the same size as the currency code set
-        String[] currencyCodes = currencyCodesSet.toArray(new String[exchangeRates.size()]);
+        String[] currencyCodes = currencyCodesSet.toArray(new String[currencyCodesSet.size()]);
 
         return currencyCodes;
 
@@ -60,12 +54,6 @@ public class BasicCurrencyConverter implements CurrencyConverter {
 
     // will return the exchange rate between the provided currencies.
     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) {
-        // create new instance of the CurrenciesGBP class (to access its methods)
-        // CurrenciesGBP currenciesGBP = new CurrenciesGBP();
-
-        // get the exchange rates (hash map)
-        // HashMap<String, Double> exchangeRates = currenciesGBP.getAllExchangeRates();
-
         // calculate exchange rate between currencies using GBP exchange rate
         double exchangeRate = currenciesGBP.get(destinationCurrencyCode) / currenciesGBP.get(sourceCurrencyCode);
 
