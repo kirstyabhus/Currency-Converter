@@ -1,9 +1,18 @@
 package com.codingblackfemales;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Set;
 
 import com.codingblackfemales.exceptions.currencyExceptions;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.util.HashSet;
 
@@ -20,11 +29,14 @@ public class BasicCurrencyConverter implements CurrencyConverter {
     // currency)
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
 
+        // create an instance of currencyExceptions to use the methods of this class
         currencyExceptions currencyExceptions = new currencyExceptions();
+
+        // use the given values to check for exceptions
         double exceptionValue = currencyExceptions.findException(sourceCurrencyCode, destinationCurrencyCode, amount,
                 currenciesGBP);
 
-        // Exceptions
+        // Exception handling
         if (exceptionValue == 0.0) {
             return 0.0;
         }
@@ -54,10 +66,31 @@ public class BasicCurrencyConverter implements CurrencyConverter {
 
     // will return the exchange rate between the provided currencies.
     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) {
-        // calculate exchange rate between currencies using GBP exchange rate
-        double exchangeRate = currenciesGBP.get(destinationCurrencyCode) / currenciesGBP.get(sourceCurrencyCode);
+        // Setting URL
+        String url_str = "https://v6.exchangerate-api.com/v6/8d246aca316c5a6059a8bd96/pair/";
 
-        return exchangeRate;
+        // Making Request
+        URL url;
+        try {
+            url = new URL(url_str + sourceCurrencyCode + "/" + destinationCurrencyCode);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.connect();
+
+            // Convert to JSON
+            JsonParser jp = new JsonParser();
+            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+            JsonObject jsonobj = root.getAsJsonObject();
+
+            // Accessing object
+            double req_result = jsonobj.get("conversion_rate").getAsDouble();
+
+            return req_result;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0.0;
     }
 
 }
