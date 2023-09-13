@@ -12,6 +12,10 @@ public class CurrenciesGBP implements Currencies {
                 put("EUR", 1.16);
                 put("USD", 1.31);
                 put("JPY", 181.78);
+                put("NZD", 2.06);
+                put("NGN", 0.46);
+                put("SBD", 2.42);
+                put("CAD", 121.7);
             }
         };
     }
