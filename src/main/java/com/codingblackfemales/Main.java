@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
 
         CurrenciesGBP currenciesGBP = new CurrenciesGBP();
-
         BasicCurrencyConverter converter = new BasicCurrencyConverter(currenciesGBP);
 
         // create an object of Scanner
@@ -21,10 +20,22 @@ public class Main {
         System.out.println("2. View accepted currency codes");
         System.out.println("3. Get exchange rate\n");
 
-        System.out.println("Option: ");
-        // take the option input from the user
-        String option = input.nextLine();
+        // user option
+        String option;
 
+        // user optionn choice kept within do-while, to ensure user only chooses the
+        // avaliable options
+        do {
+
+            System.out.println("Option: ");
+            // take the option input from the user
+            option = input.nextLine();
+
+            // continue asking the user for input if their input option is not one of the
+            // avaliable options
+        } while (!option.equals("1") && !option.equals("2") && !option.equals("3"));
+
+        // convert currency option
         if (option.equals("1")) {
             // ask the user for source code input
             System.out.println("Enter your source currency code: ");
@@ -44,11 +55,13 @@ public class Main {
             input.close();
 
             System.out.println(converter.convertCurrency(sourceCurrency, destinationCurrency, amount));
+            // output currenct codes option
         } else if (option.equals("2")) {
 
             // output currency codes array as string
             System.out.println(Arrays.toString(converter.getCurrencyCodes()));
 
+            // get exchange rate option
         } else if (option.equals("3")) {
             // ask the user for source code input
             System.out.println("Enter your source currency code: ");
