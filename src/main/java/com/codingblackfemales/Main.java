@@ -23,13 +23,18 @@ public class Main {
         String option;
 
         // user option choice input kept within do-while, to ensure user only chooses
-        // the
-        // avaliable options
+        // the avaliable options. If input is not one of the options, the user will be
+        // promted for an input again
         do {
 
             System.out.println("Option: ");
             // take the option input from the user
             option = input.nextLine();
+
+            // if the input is not one of the avaliable options, let the user know
+            if (!option.equals("1") && !option.equals("2")) {
+                System.out.println("Option " + option + " is not available. Please choose between option 1 and 2.\n");
+            }
 
             // continue asking the user for input if their input option is not one of the
             // avaliable options
