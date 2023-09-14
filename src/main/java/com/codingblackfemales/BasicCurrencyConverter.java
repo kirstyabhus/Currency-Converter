@@ -10,7 +10,7 @@ import java.util.HashSet;
 public class BasicCurrencyConverter implements CurrencyConverter {
     HashMap<String, Double> currenciesGBP;
 
-    // add constuctor
+    // constuctor
     public BasicCurrencyConverter(Currencies currencies) {
         // will get the exchange rates HashMap from the given currencies
         this.currenciesGBP = currencies.getAllExchangeRates();
@@ -20,11 +20,13 @@ public class BasicCurrencyConverter implements CurrencyConverter {
     // currency)
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
 
+        // create new instance of currencyExceptions
         currencyExceptions currencyExceptions = new currencyExceptions();
+        // find the exceptions that will occur from the inputs
         double exceptionValue = currencyExceptions.findException(sourceCurrencyCode, destinationCurrencyCode, amount,
                 currenciesGBP);
 
-        // Exceptions
+        // if theres an exception, return 0.0
         if (exceptionValue == 0.0) {
             return 0.0;
         }
