@@ -54,7 +54,11 @@ public class Main {
             // close the scanner object
             input.close();
 
-            System.out.println(converter.convertCurrency(sourceCurrency, destinationCurrency, amount));
+            double convertedAmount = converter.convertCurrency(sourceCurrency, destinationCurrency, amount);
+
+            // output the converted amount
+            System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + destinationCurrency);
+
             // output currenct codes option
         } else if (option.equals("2")) {
 
