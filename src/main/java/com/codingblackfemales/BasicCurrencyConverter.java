@@ -29,9 +29,6 @@ public class BasicCurrencyConverter implements CurrencyConverter {
             return 0.0;
         }
 
-        // TODO add Try-catch with return in try
-        // TODO try throws again
-
         // calculate the destination amount, after getting the exchange rate
         double destinationAmount = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
 
