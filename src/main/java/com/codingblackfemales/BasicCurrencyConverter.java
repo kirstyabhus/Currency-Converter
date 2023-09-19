@@ -3,7 +3,7 @@ package com.codingblackfemales;
 import java.util.HashMap;
 import java.util.Set;
 
-import com.codingblackfemales.exceptions.currencyExceptions;
+import com.codingblackfemales.exceptions.CurrencyExceptions;
 
 import java.util.HashSet;
 
@@ -21,7 +21,7 @@ public class BasicCurrencyConverter implements CurrencyConverter {
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
 
         // create new instance of currencyExceptions
-        currencyExceptions currencyExceptions = new currencyExceptions();
+        CurrencyExceptions currencyExceptions = new CurrencyExceptions();
         // find the exceptions that will occur from the inputs
         double exceptionValue = currencyExceptions.findException(sourceCurrencyCode, destinationCurrencyCode, amount,
                 currenciesGBP);

@@ -44,14 +44,14 @@ public class Main {
         if (option.equals("1")) {
             // ask the user for source code input
             System.out.println("\nEnter your source currency code: ");
-            // output currency codes array as string
+            // output currency codes array as string, to show avaliable currencies
             System.out.println(Arrays.toString(converter.getCurrencyCodes()));
             // take the source code input from the user
             String sourceCurrency = input.nextLine();
 
             // ask the user for destination code input
             System.out.println("\nEnter your destination currency code: ");
-            // output currency codes array as string
+            // output currency codes array as string, to show avaliable currencies
             System.out.println(Arrays.toString(converter.getCurrencyCodes()));
             // take the destination code input from the user
             String destinationCurrency = input.nextLine();
@@ -73,7 +73,7 @@ public class Main {
         } else if (option.equals("2")) {
             // ask the user for source code input
             System.out.println("\nEnter your source currency code: ");
-            // output currency codes array as string
+            // output currency codes array as string, to show avaliable currencies
             System.out.println(Arrays.toString(converter.getCurrencyCodes()));
             // take the source code input from the user
             String sourceCurrency = input.nextLine();
@@ -88,6 +88,7 @@ public class Main {
             // close the scanner object
             input.close();
 
+            // get the exchange rate from the given currencies
             double exchangeRate = converter.getExchangeRate(sourceCurrency, destinationCurrency);
 
             System.out.println("1 " + sourceCurrency + " = " + exchangeRate + " " + destinationCurrency);

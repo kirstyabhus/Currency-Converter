@@ -2,7 +2,7 @@ package com.codingblackfemales.exceptions;
 
 import java.util.HashMap;
 
-public class currencyExceptions {
+public class CurrencyExceptions {
     public double findException(String sourceCurrencyCode, String destinationCurrencyCode, double amount,
             HashMap<String, Double> currenciesGBP) {
         // create new instance of the CurrenciesGBP class (to access its methods)
