@@ -17,7 +17,8 @@ public class Main {
         System.out.println("\n--- Welcome to Kirsty's Currency Converter ---\n");
         System.out.println("Choose an option from below:");
         System.out.println("1. Convert currency");
-        System.out.println("2. Get exchange rate\n");
+        System.out.println("2. Get exchange rate");
+        System.out.println("3. Convert currency (API)\n");
 
         // user option
         String option;
@@ -32,13 +33,14 @@ public class Main {
             option = input.nextLine();
 
             // if the input is not one of the avaliable options, let the user know
-            if (!option.equals("1") && !option.equals("2")) {
-                System.out.println("Option " + option + " is not available. Please choose between option 1 and 2.\n");
+            if (!option.equals("1") && !option.equals("2") && !option.equals("3")) {
+                System.out
+                        .println("Option " + option + " is not available. Please choose between options 1, 2 and 3.\n");
             }
 
             // continue asking the user for input if their input option is not one of the
             // avaliable options
-        } while (!option.equals("1") && !option.equals("2"));
+        } while (!option.equals("1") && !option.equals("2") && !option.equals("3"));
 
         // convert currency option
         if (option.equals("1")) {
