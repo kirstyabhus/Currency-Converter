@@ -1,5 +1,6 @@
 package com.codingblackfemales;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Main {
 
         CurrenciesGBP currenciesGBP = new CurrenciesGBP();
         BasicCurrencyConverter converter = new BasicCurrencyConverter(currenciesGBP);
+        CurrenciesAPI currenciesAPI = new CurrenciesAPI();
 
         // create an object of Scanner
         Scanner input = new Scanner(System.in);
@@ -94,6 +96,30 @@ public class Main {
             double exchangeRate = converter.getExchangeRate(sourceCurrency, destinationCurrency);
 
             System.out.println("1 " + sourceCurrency + " = " + exchangeRate + " " + destinationCurrency);
+
+        } else if (option.equals("3")) {
+            // ask the user for source code input
+            System.out.println("\nEnter your source currency code: ");
+            // take the source code input from the user
+            String sourceCurrency = input.nextLine();
+
+            // ask the user for destination code input
+            System.out.println("\nEnter your destination currency code: ");
+            // take the destination code input from the user
+            String destinationCurrency = input.nextLine();
+
+            System.out
+                    .println("\nEnter the amount of " + sourceCurrency + " to convert to " + destinationCurrency + ":");
+            // take the amount input from the user
+            double amount = input.nextDouble();
+
+            // close the scanner object
+            input.close();
+
+            double convertedAmount = currenciesAPI.getCurrencyConversionA(sourceCurrency, destinationCurrency, amount);
+
+            // output the converted amount
+            System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + destinationCurrency);
 
         }
     }
