@@ -5,11 +5,6 @@ import java.util.HashMap;
 public class CurrencyExceptions {
     public double findException(String sourceCurrencyCode, String destinationCurrencyCode, double amount,
             HashMap<String, Double> currenciesGBP) {
-        // create new instance of the CurrenciesGBP class (to access its methods)
-        // CurrenciesGBP currenciesGBP = new CurrenciesGBP();
-
-        // get the exchange rates (hash map)
-        // HashMap<String, Double> exchangeRates = currenciesGBP.getAllExchangeRates();
 
         // Exception for null Currency code
         if (sourceCurrencyCode == "" || destinationCurrencyCode == "") {

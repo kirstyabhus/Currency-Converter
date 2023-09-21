@@ -12,7 +12,7 @@ public class BasicCurrencyConverter implements CurrencyConverter {
 
     // constuctor
     public BasicCurrencyConverter(Currencies currencies) {
-        // will get the exchange rates HashMap from the given currencies
+        // get the exchange rates HashMap from the given currencies
         this.currenciesGBP = currencies.getAllExchangeRates();
     }
 

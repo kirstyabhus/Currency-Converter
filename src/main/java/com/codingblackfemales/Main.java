@@ -1,6 +1,5 @@
 package com.codingblackfemales;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -97,6 +96,7 @@ public class Main {
 
             System.out.println("1 " + sourceCurrency + " = " + exchangeRate + " " + destinationCurrency);
 
+            // convert currency (API version)
         } else if (option.equals("3")) {
             // ask the user for source code input
             System.out.println("\nEnter your source currency code: ");
@@ -116,10 +116,16 @@ public class Main {
             // close the scanner object
             input.close();
 
+            // convert the given currency
             double convertedAmount = currenciesAPI.getCurrencyConversionA(sourceCurrency, destinationCurrency, amount);
 
-            // output the converted amount
-            System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + destinationCurrency);
+            // if the API method returns 0.0, meaning incorrect currency code
+            if (convertedAmount == 0.0) {
+                System.out.println("\nException: Currency code must be in the database.");
+            } else {
+                // output the converted amount
+                System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + destinationCurrency);
+            }
 
         }
     }
