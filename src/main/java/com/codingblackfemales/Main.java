@@ -6,10 +6,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        final String apiKey = "8d246aca316c5a6059a8bd96";
 
         CurrenciesGBP currenciesGBP = new CurrenciesGBP();
         BasicCurrencyConverter converter = new BasicCurrencyConverter(currenciesGBP);
-        CurrenciesAPI currenciesAPI = new CurrenciesAPI();
+        CurrenciesAPI currenciesAPI = new CurrenciesAPI(apiKey);
 
         // create an object of Scanner
         Scanner input = new Scanner(System.in);

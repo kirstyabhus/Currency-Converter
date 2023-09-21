@@ -13,9 +13,15 @@ import com.google.gson.JsonParser;
 // API returns JSON data so Gson library is used to deserialize the JSON response into Java objects.
 
 public class CurrenciesAPI {
+    private final String apiKey;
+
+    public CurrenciesAPI(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
     public double getCurrencyConversionA(String source, String destination, double amount) {
         // Set URL
-        String urlStr = "https://v6.exchangerate-api.com/v6/8d246aca316c5a6059a8bd96/pair/";
+        String urlStr = "https://v6.exchangerate-api.com/v6/" + apiKey + "/pair/";
 
         // initialise the HttpURLConnection beforehand (since it will need to be closed
         // after)
