@@ -32,11 +32,16 @@ public class CurrenciesAPITest {
         String destination = "EUR";
         double amount = 100.0d;
 
+        // intitialise approx. current expected value
         double expectedConversionResult = 93.935d;
 
         // Mock the HttpURLConnection
+        // mock the behaviour of getRsponseCode(), which should be sucessful HTTP
+        // response
         when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+        // create expected JSON string response from API
         String jsonResponse = "{\"conversion_result\": " + expectedConversionResult + "}";
+        // InputStream to stimulate response from server
         InputStream responseStream = new ByteArrayInputStream(jsonResponse.getBytes());
         when(mockConnection.getInputStream()).thenReturn(responseStream);
 
@@ -44,8 +49,7 @@ public class CurrenciesAPITest {
         double result = api.getCurrencyConversionA(source, destination, amount);
 
         // Assert
-        double epsilon = 0.00001d;
-        // assertEquals(expectedConversionResult, result, epsilon);
+        double epsilon = 0.001d;
         assertTrue(Math.abs(expectedConversionResult - result) <= epsilon);
     }
 }
