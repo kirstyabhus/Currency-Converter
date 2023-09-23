@@ -42,8 +42,8 @@ OpenJDK 64-Bit Server VM Zulu17.36+13-CA (build 17.0.4+8-LTS, mixed mode, sharin
 
 1. Clone this repository to your local machine.
 ```bash
-git clone git@github.com:cbfacademy/java-currency-converter-assessment-kirstyabhus.git
-cd java-currency-converter-assessment-kirstyabhus
+git clone git@github.com:kirstyabhus/Currency-Converter.git
+cd Currency-Converter
 git checkout -b ${your-branch-name}
 ```
 
@@ -58,25 +58,4 @@ If you are on a Windows machine, that will be:
 
 ```bat
 mvnw clean validate
-```
-
-You should see the following console output:
-
-```bash
-./mvnw clean validate
-
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] --------------< com.codingblackfemales:java-currency-converter-assessment >-----------------
-[INFO] Building java-currency-converter-assessment 1.0.0
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] --- maven-clean-plugin:3.2.0:clean (default-clean) @ java-currency-converter-assessment ---
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.155 s
-[INFO] Finished at: 2022-11-03T20:56:09Z
-[INFO] ------------------------------------------------------------------------
-
 ```
