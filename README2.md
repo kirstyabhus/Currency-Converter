@@ -38,8 +38,8 @@ OpenJDK 64-Bit Server VM Zulu17.36+13-CA (build 17.0.4+8-LTS, mixed mode, sharin
 
 1. Clone this repository to your local machine.
 ```bash
-git clone git@github.com:cbfacademy/java-currency-converter-assessment-[your student identifier].git
-cd java-currency-converter-assessment-[your student identifier]
+git clone git@github.com:cbfacademy/java-currency-converter-assessment-kirstyabhus.git
+cd java-currency-converter-assessment-kirstyabhus
 git checkout -b ${your-branch-name}
 ```
 
