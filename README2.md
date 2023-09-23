@@ -7,7 +7,7 @@ An application that can convert a user-defined amount in a source currency to a 
 ### Currency Converter
 #### CurrencyConverter interface
 The CurrencyConverter class includes three methods:
-- 'double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount)`: This method accepts a source currency code, a destination currency code, and an amount. It will return the converted amount.
+- `double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount)`: This method accepts a source currency code, a destination currency code, and an amount. It will return the converted amount.
 - `String[] getCurrencyCodes()`: This method returns an array of available currency codes
 - `double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode)`: This method returns the exchange rate between the provided currencies.
 #### BasicCurrencyConverter class
