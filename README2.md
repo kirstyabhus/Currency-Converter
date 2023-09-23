@@ -33,6 +33,10 @@ openjdk version "17.0.4" 2022-07-19 LTS
 OpenJDK Runtime Environment Zulu17.36+13-CA (build 17.0.4+8-LTS)
 OpenJDK 64-Bit Server VM Zulu17.36+13-CA (build 17.0.4+8-LTS, mixed mode, sharing)
 ```
+## Demo
+<p align="center">
+  <img src="https://github.com/cbfacademy/java-currency-converter-assessment-kirstyabhus/blob/main/images/Currency%20Converter%20Demo.gif" alt="Currency Converter demo" />
+</p>
 
 ## How to Install and Run this project
 
