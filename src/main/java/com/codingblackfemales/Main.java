@@ -44,6 +44,7 @@ public class Main {
             // avaliable options
         } while (!option.equals("1") && !option.equals("2") && !option.equals("3"));
 
+        // TODO Make this less repetitive
         // convert currency option
         if (option.equals("1")) {
             // ask the user for source code input
