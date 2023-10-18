@@ -12,9 +12,6 @@ public class Main {
         BasicCurrencyConverter converter = new BasicCurrencyConverter(currenciesGBP);
         CurrenciesAPI currenciesAPI = new CurrenciesAPI(apiKey);
 
-        // TESTING
-        currenciesAPI.getCurrencyCodes();
-
         // create an object of Scanner
         Scanner input = new Scanner(System.in);
 

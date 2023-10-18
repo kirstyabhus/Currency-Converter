@@ -103,6 +103,30 @@ public class testUI extends JFrame {
         panel.add(sourceComboBox);
         panel.add(destinationComboBox);
 
+        // add a texfield for output
+        JTextField outputField = new JTextField("output will be here");
+        panel.add(outputField);
+
+        // add a button
+        JButton convertButton = new JButton("convert");
+        convertButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // get the amount, source code and destination code from the user
+                // selections/inputs
+                int amount = Integer.valueOf(amountTextField.getText().toString());
+                String sourceCode = sourceComboBox.getSelectedItem().toString().substring(0, 3);
+                String destinationCode = destinationComboBox.getSelectedItem().toString().substring(0, 3);
+
+                double convertedAmount = currenciesAPI.getCurrencyConversionA(sourceCode, destinationCode, amount);
+                outputField.setText(String.valueOf(convertedAmount));
+
+            }
+
+        });
+        panel.add(convertButton);
+
         frame.add(panel);
         // make the JFrame VISIBILE
         frame.setVisible(true);
