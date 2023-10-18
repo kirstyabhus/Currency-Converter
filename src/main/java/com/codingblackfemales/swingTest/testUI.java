@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import com.codingblackfemales.CurrenciesAPI;
 
+// TODO separate this code into methods & make the layout cleaner
 public class testUI extends JFrame {
     public static void main(String[] args) {
         // create a new JFrame with window title
@@ -40,19 +41,9 @@ public class testUI extends JFrame {
                 "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swingTest\\img\\pound_icon.png");
         frame.setIconImage(flagImage.getImage());
 
-        // textfield
+        // textfield for user amount
         JTextField amountTextField = new JTextField("amount");
         panel.add(amountTextField);
-
-        amountTextField.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // get the input amount
-                int amount = Integer.valueOf(amountTextField.getText().toString());
-            }
-
-        });
 
         // adding our currency codes from the API (in other file) to this class
         final String apiKey = "8d246aca316c5a6059a8bd96";
@@ -64,41 +55,8 @@ public class testUI extends JFrame {
 
         // use the currencies array in the JComboBox for SOURCE currencies
         JComboBox sourceComboBox = new JComboBox(currenciesArray);
-
-        sourceComboBox.addActionListener(new ActionListener() {
-
-            // this is the method that will be executed when user clicks an option in the
-            // JComboBox
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // store the item the user selected as a string
-                String option = sourceComboBox.getSelectedItem().toString();
-                // get the currency code only
-                String sourceCode = option.substring(0, 3);
-                System.out.println(sourceCode);
-
-            }
-
-        });
-
         // use the currencies array in the JComboBox for DESTINATION currencies
         JComboBox destinationComboBox = new JComboBox(currenciesArray);
-
-        destinationComboBox.addActionListener(new ActionListener() {
-
-            // this is the method that will be executed when user clicks an option in the
-            // JComboBox
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // store the item the user selected as a string
-                String option = destinationComboBox.getSelectedItem().toString();
-                // get the currency code only
-                String destinationCode = option.substring(0, 3);
-                System.out.println(destinationCode);
-
-            }
-
-        });
 
         panel.add(sourceComboBox);
         panel.add(destinationComboBox);
@@ -107,10 +65,12 @@ public class testUI extends JFrame {
         JTextField outputField = new JTextField("output will be here");
         panel.add(outputField);
 
-        // add a button
+        // add a conversion button
         JButton convertButton = new JButton("convert");
         convertButton.addActionListener(new ActionListener() {
 
+            // clicking the button will take the amount input, source & destination currency
+            // conversion and then push them into the API method to get converted amount
             @Override
             public void actionPerformed(ActionEvent e) {
                 // get the amount, source code and destination code from the user
@@ -120,6 +80,8 @@ public class testUI extends JFrame {
                 String destinationCode = destinationComboBox.getSelectedItem().toString().substring(0, 3);
 
                 double convertedAmount = currenciesAPI.getCurrencyConversionA(sourceCode, destinationCode, amount);
+
+                // display the converted amount in the output field
                 outputField.setText(String.valueOf(convertedAmount));
 
             }

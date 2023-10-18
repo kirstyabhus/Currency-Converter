@@ -76,33 +76,6 @@ public class Main {
             // output the converted amount
             System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + destinationCurrency);
 
-            /*
-             * // get exchange rate option
-             * } else if (option.equals("2")) {
-             * // ask the user for source code input
-             * System.out.println("\nEnter your source currency code: ");
-             * // output currency codes array as string, to show avaliable currencies
-             * System.out.println(Arrays.toString(converter.getCurrencyCodes()));
-             * // take the source code input from the user
-             * String sourceCurrency = input.nextLine();
-             * 
-             * // ask the user for destination code input
-             * System.out.println("\nEnter your destination currency code: ");
-             * // output currency codes array as string
-             * System.out.println(Arrays.toString(converter.getCurrencyCodes()));
-             * // take the destination code input from the user
-             * String destinationCurrency = input.nextLine();
-             * 
-             * // close the scanner object
-             * input.close();
-             * 
-             * // get the exchange rate from the given currencies
-             * double exchangeRate = converter.getExchangeRate(sourceCurrency,
-             * destinationCurrency);
-             * 
-             * System.out.println("1 " + sourceCurrency + " = " + exchangeRate + " " +
-             * destinationCurrency);
-             */
             // convert currency (API version)
         } else if (option.equals("2")) {
             // ask the user for source code input
