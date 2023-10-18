@@ -54,9 +54,9 @@ public class CurrenciesAPI {
             }
             // handling of IOException
         } catch (IOException e) {
-            // e.printStackTrace();
             // error value to return
             return 0.0;
+
             // a finally block to close the HTTP connection, regardless of whether an
             // excpetion occured or not
         } finally {
@@ -93,10 +93,13 @@ public class CurrenciesAPI {
 
                 // create new arraylist to store the currency codes (with their names)
                 ArrayList<String> currencyCodes = new ArrayList<String>();
+
                 // process the elemets in the "supported_codes" array
                 for (JsonElement element : supportedCodes) {
                     JsonArray codeArray = element.getAsJsonArray();
+                    // get the currencycode which is the first element of array
                     String code = codeArray.get(0).getAsString();
+                    // get the currencyname which is the second element of array
                     String name = codeArray.get(1).getAsString();
                     currencyCodes.add(code + " (" + name + ")");
                 }
@@ -109,9 +112,9 @@ public class CurrenciesAPI {
             }
             // handling of IOException
         } catch (IOException e) {
-            // e.printStackTrace();
-            // error value to return
+            // error value to return (an empty array list)
             return new ArrayList<>();
+
             // a finally block to close the HTTP connection, regardless of whether an
             // excpetion occured or not
         } finally {
