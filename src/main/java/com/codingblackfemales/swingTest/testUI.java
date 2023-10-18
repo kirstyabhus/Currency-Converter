@@ -1,6 +1,9 @@
 package com.codingblackfemales.swingTest;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -17,13 +20,11 @@ public class testUI extends JFrame {
     public static void main(String[] args) {
         // create a new JFrame with window title
         JFrame frame = new JFrame("Currency Converter");
-
         // exit out of application when close button clicked, which is by default
         // HIDE_ON_CLOSE
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         // set the size of the frame
-        frame.setSize(400, 400);
+        frame.setSize(600, 400);
         // prevent resizing of the frame
         frame.setResizable(false);
 
@@ -34,51 +35,41 @@ public class testUI extends JFrame {
         JLabel headinglabel = new JLabel("Currency Converter");
         panel.add(headinglabel);
 
-        /*
-         * // adding an image
-         * // create a new label for the flag image
-         * JLabel flagImageLabel = new JLabel();
-         * // create an ImageIcon
-         * ImageIcon flagImageIcon = new ImageIcon(
-         * "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swingTest\\img\\n"
-         * + //
-         * "igeriaFlagSMALL.png");
-         * // set the icon to the label
-         * flagImageLabel.setIcon(flagImageIcon);
-         * // add the image to the frame
-         * panel.add(flagImageLabel);
-         */
-
         // change the ICON of the frame/window (top left)
         ImageIcon flagImage = new ImageIcon(
                 "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swingTest\\img\\pound_icon.png");
         frame.setIconImage(flagImage.getImage());
 
-        /*
-         * create a button
-         * JButton button = new JButton("click me");
-         * panel.add(button);
-         */
-
         // textfield
-        JTextField amountTextField = new JTextField("text field");
+        JTextField amountTextField = new JTextField("amount");
         panel.add(amountTextField);
 
-        // adding out currency codes from the API in other file
+        // adding our currency codes from the API (in other file) to this class
         final String apiKey = "8d246aca316c5a6059a8bd96";
         CurrenciesAPI currenciesAPI = new CurrenciesAPI(apiKey);
         ArrayList<String> currenciesList = new ArrayList<String>(currenciesAPI.getCurrencyCodes());
-
         // convert the ArrayList into an array
         String[] currenciesArray = null;
         currenciesArray = currenciesList.toArray(new String[currenciesList.size()]);
+        // use the currencies array in the JComboBox
+        JComboBox countryComboBox = new JComboBox(currenciesArray);
 
-        // JComboBox = used to show a popup menu of choices, where a user can select one
-        // JComboBox(Object[] items) creates a new JComboBox containing the elements of
-        // the given array
-        // use our array of currency codes for the ComboBox
-        JComboBox country = new JComboBox(currenciesArray);
-        panel.add(country);
+        countryComboBox.addActionListener(new ActionListener() {
+
+            // this is the method that will be executed when someone clicks combo
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // store the item the user selected as a string
+                String option = countryComboBox.getSelectedItem().toString();
+                // get the currency code only
+                String code = option.substring(0, 3);
+                System.out.println(code);
+
+            }
+
+        });
+
+        panel.add(countryComboBox);
 
         frame.add(panel);
         // make the JFrame VISIBILE
