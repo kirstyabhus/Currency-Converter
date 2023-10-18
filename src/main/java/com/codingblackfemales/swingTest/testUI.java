@@ -2,10 +2,14 @@ package com.codingblackfemales.swingTest;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,18 +35,23 @@ public class testUI extends JFrame {
 
         // create a new JPanel to which Swing components can be added to
         JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
         // create heading label & add it to the panel
-        JLabel headinglabel = new JLabel("Currency Converter");
+        JLabel headinglabel = new JLabel();
         panel.add(headinglabel);
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
         // change the ICON of the frame/window (top left)
         ImageIcon flagImage = new ImageIcon(
                 "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swingTest\\img\\pound_icon.png");
         frame.setIconImage(flagImage.getImage());
 
+        // label for the amount field
+        JLabel amountLabel = new JLabel("Enter an amount:");
+        panel.add(amountLabel);
         // textfield for user amount
-        JTextField amountTextField = new JTextField("amount");
+        JTextField amountTextField = new JTextField();
         panel.add(amountTextField);
 
         // adding our currency codes from the API (in other file) to this class
@@ -54,15 +63,25 @@ public class testUI extends JFrame {
         currenciesArray = currenciesList.toArray(new String[currenciesList.size()]);
 
         // use the currencies array in the JComboBox for SOURCE currencies
-        JComboBox sourceComboBox = new JComboBox(currenciesArray);
+        JComboBox<String> sourceComboBox = new JComboBox<>(currenciesArray);
         // use the currencies array in the JComboBox for DESTINATION currencies
-        JComboBox destinationComboBox = new JComboBox(currenciesArray);
+        JComboBox<String> destinationComboBox = new JComboBox<>(currenciesArray);
 
+        // add arrow image
+        JLabel imageLabel = new JLabel();
+        ImageIcon image = new ImageIcon(
+                "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swingTest\\img\\arrow1.png");
+        imageLabel.setIcon(image);
+
+        // add the currency combo boxes, with the arrow between them
         panel.add(sourceComboBox);
+        panel.add(imageLabel);
         panel.add(destinationComboBox);
 
         // add a texfield for output
-        JTextField outputField = new JTextField("output will be here");
+        JTextField outputField = new JTextField();
+        // one way conversion via input fields
+        outputField.setEditable(false);
         panel.add(outputField);
 
         // add a conversion button
@@ -88,6 +107,8 @@ public class testUI extends JFrame {
 
         });
         panel.add(convertButton);
+
+        // Container contentPane = frame.getContentPane();
 
         frame.add(panel);
         // make the JFrame VISIBILE
