@@ -44,6 +44,16 @@ public class testUI extends JFrame {
         JTextField amountTextField = new JTextField("amount");
         panel.add(amountTextField);
 
+        amountTextField.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // get the input amount
+                int amount = Integer.valueOf(amountTextField.getText().toString());
+            }
+
+        });
+
         // adding our currency codes from the API (in other file) to this class
         final String apiKey = "8d246aca316c5a6059a8bd96";
         CurrenciesAPI currenciesAPI = new CurrenciesAPI(apiKey);
