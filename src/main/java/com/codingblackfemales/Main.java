@@ -12,15 +12,18 @@ public class Main {
         BasicCurrencyConverter converter = new BasicCurrencyConverter(currenciesGBP);
         CurrenciesAPI currenciesAPI = new CurrenciesAPI(apiKey);
 
+        // TESTING
+        currenciesAPI.getCurrencyCodes();
+
         // create an object of Scanner
         Scanner input = new Scanner(System.in);
 
         // welcome message and options
-        System.out.println("\n--- Welcome to Kirsty's Currency Converter ---\n");
+        System.out.println("\n--- Kirsty's Currency Converter ---\n");
         System.out.println("Choose an option from below:");
         System.out.println("1. Convert currency");
-        System.out.println("2. Get exchange rate");
-        System.out.println("3. Convert currency (API)\n");
+        // System.out.println("2. Get exchange rate");
+        System.out.println("2. Convert currency (API)\n");
 
         // user option
         String option;
@@ -35,14 +38,14 @@ public class Main {
             option = input.nextLine();
 
             // if the input is not one of the avaliable options, let the user know
-            if (!option.equals("1") && !option.equals("2") && !option.equals("3")) {
+            if (!option.equals("1") && !option.equals("2")) {
                 System.out
-                        .println("Option " + option + " is not available. Please choose between options 1, 2 and 3.\n");
+                        .println("Option " + option + " is not available. Please choose between options 1 and 2.\n");
             }
 
             // continue asking the user for input if their input option is not one of the
             // avaliable options
-        } while (!option.equals("1") && !option.equals("2") && !option.equals("3"));
+        } while (!option.equals("1") && !option.equals("2"));
 
         // TODO Make this less repetitive
         // convert currency option
@@ -52,14 +55,14 @@ public class Main {
             // output currency codes array as string, to show avaliable currencies
             System.out.println(Arrays.toString(converter.getCurrencyCodes()));
             // take the source code input from the user
-            String sourceCurrency = input.nextLine();
+            String sourceCurrency = input.nextLine().toUpperCase();
 
             // ask the user for destination code input
             System.out.println("\nEnter your destination currency code: ");
             // output currency codes array as string, to show avaliable currencies
             System.out.println(Arrays.toString(converter.getCurrencyCodes()));
             // take the destination code input from the user
-            String destinationCurrency = input.nextLine();
+            String destinationCurrency = input.nextLine().toUpperCase();
 
             System.out
                     .println("\nEnter the amount of " + sourceCurrency + " to convert to " + destinationCurrency + ":");
@@ -69,46 +72,51 @@ public class Main {
             // close the scanner object
             input.close();
 
+            double exchangeRate = currenciesAPI.getCurrencyConversionA(sourceCurrency, destinationCurrency, 1);
             double convertedAmount = converter.convertCurrency(sourceCurrency, destinationCurrency, amount);
 
+            System.out.println("\n" + 1 + " " + sourceCurrency + " = " + exchangeRate + " " + destinationCurrency);
             // output the converted amount
             System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + destinationCurrency);
 
-            // get exchange rate option
+            /*
+             * // get exchange rate option
+             * } else if (option.equals("2")) {
+             * // ask the user for source code input
+             * System.out.println("\nEnter your source currency code: ");
+             * // output currency codes array as string, to show avaliable currencies
+             * System.out.println(Arrays.toString(converter.getCurrencyCodes()));
+             * // take the source code input from the user
+             * String sourceCurrency = input.nextLine();
+             * 
+             * // ask the user for destination code input
+             * System.out.println("\nEnter your destination currency code: ");
+             * // output currency codes array as string
+             * System.out.println(Arrays.toString(converter.getCurrencyCodes()));
+             * // take the destination code input from the user
+             * String destinationCurrency = input.nextLine();
+             * 
+             * // close the scanner object
+             * input.close();
+             * 
+             * // get the exchange rate from the given currencies
+             * double exchangeRate = converter.getExchangeRate(sourceCurrency,
+             * destinationCurrency);
+             * 
+             * System.out.println("1 " + sourceCurrency + " = " + exchangeRate + " " +
+             * destinationCurrency);
+             */
+            // convert currency (API version)
         } else if (option.equals("2")) {
             // ask the user for source code input
             System.out.println("\nEnter your source currency code: ");
-            // output currency codes array as string, to show avaliable currencies
-            System.out.println(Arrays.toString(converter.getCurrencyCodes()));
             // take the source code input from the user
-            String sourceCurrency = input.nextLine();
-
-            // ask the user for destination code input
-            System.out.println("\nEnter your destination currency code: ");
-            // output currency codes array as string
-            System.out.println(Arrays.toString(converter.getCurrencyCodes()));
-            // take the destination code input from the user
-            String destinationCurrency = input.nextLine();
-
-            // close the scanner object
-            input.close();
-
-            // get the exchange rate from the given currencies
-            double exchangeRate = converter.getExchangeRate(sourceCurrency, destinationCurrency);
-
-            System.out.println("1 " + sourceCurrency + " = " + exchangeRate + " " + destinationCurrency);
-
-            // convert currency (API version)
-        } else if (option.equals("3")) {
-            // ask the user for source code input
-            System.out.println("\nEnter your source currency code: ");
-            // take the source code input from the user
-            String sourceCurrency = input.nextLine();
+            String sourceCurrency = input.nextLine().toUpperCase();
 
             // ask the user for destination code input
             System.out.println("\nEnter your destination currency code: ");
             // take the destination code input from the user
-            String destinationCurrency = input.nextLine();
+            String destinationCurrency = input.nextLine().toUpperCase();
 
             System.out
                     .println("\nEnter the amount of " + sourceCurrency + " to convert to " + destinationCurrency + ":");
@@ -118,6 +126,8 @@ public class Main {
             // close the scanner object
             input.close();
 
+            // exchange rate
+            double exchangeRate = currenciesAPI.getCurrencyConversionA(sourceCurrency, destinationCurrency, 1);
             // convert the given currency
             double convertedAmount = currenciesAPI.getCurrencyConversionA(sourceCurrency, destinationCurrency, amount);
 
@@ -126,6 +136,7 @@ public class Main {
                 System.out.println("\nException: Currency code must be in the database.");
             } else {
                 // output the converted amount
+                System.out.println("\n" + 1 + " " + sourceCurrency + " = " + exchangeRate + " " + destinationCurrency);
                 System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + destinationCurrency);
             }
 
