@@ -51,25 +51,47 @@ public class testUI extends JFrame {
         // convert the ArrayList into an array
         String[] currenciesArray = null;
         currenciesArray = currenciesList.toArray(new String[currenciesList.size()]);
-        // use the currencies array in the JComboBox
-        JComboBox countryComboBox = new JComboBox(currenciesArray);
 
-        countryComboBox.addActionListener(new ActionListener() {
+        // use the currencies array in the JComboBox for SOURCE currencies
+        JComboBox sourceComboBox = new JComboBox(currenciesArray);
 
-            // this is the method that will be executed when someone clicks combo
+        sourceComboBox.addActionListener(new ActionListener() {
+
+            // this is the method that will be executed when user clicks an option in the
+            // JComboBox
             @Override
             public void actionPerformed(ActionEvent e) {
                 // store the item the user selected as a string
-                String option = countryComboBox.getSelectedItem().toString();
+                String option = sourceComboBox.getSelectedItem().toString();
                 // get the currency code only
-                String code = option.substring(0, 3);
-                System.out.println(code);
+                String sourceCode = option.substring(0, 3);
+                System.out.println(sourceCode);
 
             }
 
         });
 
-        panel.add(countryComboBox);
+        // use the currencies array in the JComboBox for DESTINATION currencies
+        JComboBox destinationComboBox = new JComboBox(currenciesArray);
+
+        destinationComboBox.addActionListener(new ActionListener() {
+
+            // this is the method that will be executed when user clicks an option in the
+            // JComboBox
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // store the item the user selected as a string
+                String option = destinationComboBox.getSelectedItem().toString();
+                // get the currency code only
+                String destinationCode = option.substring(0, 3);
+                System.out.println(destinationCode);
+
+            }
+
+        });
+
+        panel.add(sourceComboBox);
+        panel.add(destinationComboBox);
 
         frame.add(panel);
         // make the JFrame VISIBILE
