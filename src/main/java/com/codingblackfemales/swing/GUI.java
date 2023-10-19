@@ -1,9 +1,8 @@
 package com.codingblackfemales.swing;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,10 +17,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import com.codingblackfemales.CurrenciesAPI;
 
-// TODO separate this code into methods & make the layout cleaner
 public class GUI {
 
     public GUI() {
@@ -30,7 +29,7 @@ public class GUI {
         // exit out of application when close button clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // set the size of the frame
-        frame.setSize(600, 400);
+        frame.setSize(500, 490);
         // prevent resizing of the frame
         frame.setResizable(false);
 
@@ -38,9 +37,17 @@ public class GUI {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
+        panel.setBorder(new EmptyBorder(20, 80, 20, 80));
+
         // create heading label
         JLabel headinglabel = new JLabel("Currency Converter");
-        headinglabel.setFont(new Font("Verdana", Font.BOLD, 20));
+        headinglabel.setFont(new Font("Verdena", Font.BOLD, 25));
+
+        JLabel logoImageLabel = new JLabel();
+        ImageIcon logoIcon = new ImageIcon(
+                "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swing\\img\\logo3.png");
+        logoImageLabel.setIcon(logoIcon);
+        panel.add(logoImageLabel);
 
         // change the ICON of the frame/window (top left)
         ImageIcon flagImage = new ImageIcon(
@@ -48,8 +55,18 @@ public class GUI {
         frame.setIconImage(flagImage.getImage());
 
         // label for the amount field
-        JLabel amountLabel = new JLabel("Enter an amount:");
-        amountLabel.setFont(new Font("Verdana", Font.PLAIN, 15));
+        JLabel amountLabel = new JLabel("Amount");
+        amountLabel.setFont(new Font("Verdana", Font.BOLD, 15));
+        // label for the source field
+        JLabel fromLabel = new JLabel("From");
+        fromLabel.setFont(new Font("Verdana", Font.BOLD, 15));
+        // label for the destination field
+        JLabel toLabel = new JLabel("To");
+        toLabel.setFont(new Font("Verdana", Font.BOLD, 15));
+
+        // Create a JPanel with FlowLayout to left-align the amountLabel
+        JPanel amountLabelPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        amountLabelPanel.add(amountLabel);
 
         // textfield for user amount
         JTextField amountTextField = new JTextField();
@@ -67,9 +84,11 @@ public class GUI {
         // use the currencies array in the JComboBox for SOURCE currencies
         JComboBox<String> sourceComboBox = new JComboBox<>(currenciesArray);
         sourceComboBox.setFont(new Font("Verdana", Font.PLAIN, 15));
+        sourceComboBox.setBackground(Color.white);
         // use the currencies array in the JComboBox for DESTINATION currencies
         JComboBox<String> destinationComboBox = new JComboBox<>(currenciesArray);
         destinationComboBox.setFont(new Font("Verdana", Font.PLAIN, 15));
+        destinationComboBox.setBackground(Color.white);
 
         // create a button to switch the currency selections
         ImageIcon switchIcon = new ImageIcon(
@@ -97,7 +116,8 @@ public class GUI {
         outputField.setEditable(false);
 
         // create a conversion button
-        JButton convertButton = new JButton("convert");
+        JButton convertButton = new JButton("Convert");
+        convertButton.setFont(new Font("Verdana", Font.PLAIN, 13));
         // convert the currency, when the user clicks the convert button
         convertButton.addActionListener(new ActionListener() {
 
@@ -128,16 +148,29 @@ public class GUI {
 
         });
 
-        // make all components centered
-        Box headingBox = Box.createHorizontalBox();
-        headingBox.add(Box.createHorizontalGlue());
-        headingBox.add(headinglabel);
-        headingBox.add(Box.createHorizontalGlue());
+        // left align the amount label
+        Box leftAmountBox = Box.createHorizontalBox();
+        leftAmountBox.add(Box.createHorizontalGlue());
+        leftAmountBox.add(amountLabel);
+        leftAmountBox.add(Box.createHorizontalGlue());
 
-        Box amountBox = Box.createHorizontalBox();
-        amountBox.add(Box.createHorizontalGlue());
-        amountBox.add(amountLabel);
-        amountBox.add(Box.createHorizontalGlue());
+        // left align the from label
+        Box leftFromBox = Box.createHorizontalBox();
+        leftFromBox.add(Box.createHorizontalGlue());
+        leftFromBox.add(fromLabel);
+        leftFromBox.add(Box.createHorizontalGlue());
+
+        // left align the to label
+        Box leftToBox = Box.createHorizontalBox();
+        leftToBox.add(Box.createHorizontalGlue());
+        leftToBox.add(toLabel);
+        leftToBox.add(Box.createHorizontalGlue());
+
+        // make all other components centered
+        Box logoImageBox = Box.createHorizontalBox();
+        logoImageBox.add(Box.createHorizontalGlue());
+        logoImageBox.add(logoImageLabel);
+        logoImageBox.add(Box.createHorizontalGlue());
 
         Box switchButtonBox = Box.createHorizontalBox();
         switchButtonBox.add(Box.createHorizontalGlue());
@@ -150,23 +183,33 @@ public class GUI {
         convertButtonBox.add(Box.createHorizontalGlue());
 
         // add all the components
-        panel.add(headingBox);
+        panel.add(logoImageBox);
+        // create space between componenets by adding an invisible component
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
-        panel.add(amountBox);
+        panel.add(leftAmountBox);
         panel.add(amountTextField);
+        panel.add(Box.createRigidArea(new Dimension(5, 10)));
         panel.add(errorMessageLabel);
+        panel.add(leftFromBox);
         panel.add(sourceComboBox);
+        panel.add(Box.createRigidArea(new Dimension(5, 15)));
         panel.add(switchButtonBox);
+        panel.add(Box.createRigidArea(new Dimension(5, 10)));
+        panel.add(leftToBox);
         panel.add(destinationComboBox);
+        panel.add(Box.createRigidArea(new Dimension(5, 20)));
         panel.add(outputField);
+        panel.add(Box.createRigidArea(new Dimension(5, 15)));
         panel.add(convertButtonBox);
+        panel.add(Box.createRigidArea(new Dimension(5, 10)));
         frame.add(panel);
+        panel.add(Box.createRigidArea(new Dimension(5, 20)));
 
         // make the JFrame VISIBILE
         frame.setVisible(true);
 
         // change the color of the background (NOT WORKING?)
-        // frame.setBackground(new Color(0, 0, 0));
+        // panel.setBackground(new Color(255, 255, 255));
         // frame.getContentPane().setBackground(Color.GREEN);
     }
 
