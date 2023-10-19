@@ -75,19 +75,25 @@ public class GUI {
         JComboBox<String> destinationComboBox = new JComboBox<>(currenciesArray);
         destinationComboBox.setFont(new Font("Verdana", Font.PLAIN, 15));
 
-        // Switch the currencies
+        // add button to switch the currencies
         ImageIcon switchIcon = new ImageIcon(
                 "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swing\\img\\switch.png");
         JButton switchButton = new JButton(switchIcon);
+        // switch the selected combo box selections
+        switchButton.addActionListener(new ActionListener() {
 
-        /*
-         * add arrow image
-         * JLabel imageLabel = new JLabel();
-         * ImageIcon image = new ImageIcon(
-         * "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swing\\img\\arrow_icon.png"
-         * );
-         * imageLabel.setIcon(image);
-         */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // get the selections
+                String sourceSelection = sourceComboBox.getSelectedItem().toString();
+                String destinationSelection = destinationComboBox.getSelectedItem().toString();
+
+                // swap the selected items
+                sourceComboBox.setSelectedItem(destinationSelection);
+                destinationComboBox.setSelectedItem(sourceSelection);
+            }
+
+        });
 
         // add the currency combo boxes, with the arrow between them
         panel.add(sourceComboBox);
