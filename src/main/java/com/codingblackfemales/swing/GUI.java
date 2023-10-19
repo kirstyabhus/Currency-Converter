@@ -27,8 +27,7 @@ public class GUI {
     public GUI() {
         // create a new JFrame with window title
         JFrame frame = new JFrame("Currency Converter");
-        // exit out of application when close button clicked, which is by default
-        // HIDE_ON_CLOSE
+        // exit out of application when close button clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // set the size of the frame
         frame.setSize(600, 400);
@@ -39,11 +38,9 @@ public class GUI {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-        // create heading label & add it to the panel
+        // create heading label
         JLabel headinglabel = new JLabel("Currency Converter");
         headinglabel.setFont(new Font("Verdana", Font.BOLD, 20));
-        panel.add(headinglabel);
-        panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
         // change the ICON of the frame/window (top left)
         ImageIcon flagImage = new ImageIcon(
@@ -53,19 +50,18 @@ public class GUI {
         // label for the amount field
         JLabel amountLabel = new JLabel("Enter an amount:");
         amountLabel.setFont(new Font("Verdana", Font.PLAIN, 15));
-        panel.add(amountLabel);
+
         // textfield for user amount
         JTextField amountTextField = new JTextField();
-        panel.add(amountTextField);
-        // a space to display error messages
-        JLabel errorMessage = new JLabel();
-        panel.add(errorMessage);
 
-        // adding our currency codes from the API (in other file) to this class
+        // a space to display error messages
+        JLabel errorMessageLabel = new JLabel();
+
+        // bring the available currency codes from the API to this class
         final String apiKey = "8d246aca316c5a6059a8bd96";
         CurrenciesAPI currenciesAPI = new CurrenciesAPI(apiKey);
         ArrayList<String> currenciesList = new ArrayList<String>(currenciesAPI.getCurrencyCodes());
-        // convert the ArrayList into an array
+        // convert the ArrayList into an array for the comboBox
         String[] currenciesArray = currenciesList.toArray(new String[currenciesList.size()]);
 
         // use the currencies array in the JComboBox for SOURCE currencies
@@ -75,11 +71,11 @@ public class GUI {
         JComboBox<String> destinationComboBox = new JComboBox<>(currenciesArray);
         destinationComboBox.setFont(new Font("Verdana", Font.PLAIN, 15));
 
-        // add button to switch the currencies
+        // create a button to switch the currency selections
         ImageIcon switchIcon = new ImageIcon(
                 "C:\\Users\\kabhu\\programming-projects\\Currency-Converter\\src\\main\\java\\com\\codingblackfemales\\swing\\img\\switch.png");
         JButton switchButton = new JButton(switchIcon);
-        // switch the selected combo box selections
+        // switch the selected combo box selections, when user clicks the switch button
         switchButton.addActionListener(new ActionListener() {
 
             @Override
@@ -95,29 +91,23 @@ public class GUI {
 
         });
 
-        // add the currency combo boxes, with the arrow between them
-        panel.add(sourceComboBox);
-        panel.add(switchButton);
-        // panel.add(imageLabel);
-        panel.add(destinationComboBox);
-
-        // add a texfield for output
+        // create a texfield for output
         JTextField outputField = new JTextField();
-        // one way conversion via input fields
+        // disable editing of the output field
         outputField.setEditable(false);
-        panel.add(outputField);
 
-        // add a conversion button
+        // create a conversion button
         JButton convertButton = new JButton("convert");
+        // convert the currency, when the user clicks the convert button
         convertButton.addActionListener(new ActionListener() {
 
-            // clicking the button will take the amount input, source & destination currency
-            // conversion and then push them into the API method to get converted amount
+            // clicking the button will take the amount input, source & destination
+            // currencies and then push them into the API method to get the converted amount
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     // set the errorMessage space to empty
-                    errorMessage.setText("");
+                    errorMessageLabel.setText("");
 
                     // get the amount, source code and destination code from the user
                     // selections/inputs
@@ -132,16 +122,46 @@ public class GUI {
                     outputField.setText(String.valueOf(convertedAmount));
                 } catch (NumberFormatException ex) {
                     // if user input is not a number, display the message
-                    errorMessage.setText("Invalid input. Please enter a valid amount.");
+                    errorMessageLabel.setText("Invalid input. Please enter a valid amount.");
                 }
             }
 
         });
-        panel.add(convertButton);
 
-        // Container contentPane = frame.getContentPane();
+        // make all components centered
+        Box headingBox = Box.createHorizontalBox();
+        headingBox.add(Box.createHorizontalGlue());
+        headingBox.add(headinglabel);
+        headingBox.add(Box.createHorizontalGlue());
 
+        Box amountBox = Box.createHorizontalBox();
+        amountBox.add(Box.createHorizontalGlue());
+        amountBox.add(amountLabel);
+        amountBox.add(Box.createHorizontalGlue());
+
+        Box switchButtonBox = Box.createHorizontalBox();
+        switchButtonBox.add(Box.createHorizontalGlue());
+        switchButtonBox.add(switchButton);
+        switchButtonBox.add(Box.createHorizontalGlue());
+
+        Box convertButtonBox = Box.createHorizontalBox();
+        convertButtonBox.add(Box.createHorizontalGlue());
+        convertButtonBox.add(convertButton);
+        convertButtonBox.add(Box.createHorizontalGlue());
+
+        // add all the components
+        panel.add(headingBox);
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
+        panel.add(amountBox);
+        panel.add(amountTextField);
+        panel.add(errorMessageLabel);
+        panel.add(sourceComboBox);
+        panel.add(switchButtonBox);
+        panel.add(destinationComboBox);
+        panel.add(outputField);
+        panel.add(convertButtonBox);
         frame.add(panel);
+
         // make the JFrame VISIBILE
         frame.setVisible(true);
 
