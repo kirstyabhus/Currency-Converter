@@ -101,7 +101,7 @@ public class CurrenciesAPI {
                     String code = codeArray.get(0).getAsString();
                     // get the currencyname which is the second element of array
                     String name = codeArray.get(1).getAsString();
-                    currencyCodes.add(code + " (" + name + ")");
+                    currencyCodes.add(code + " - " + name);
                 }
 
                 return currencyCodes;
