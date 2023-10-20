@@ -16,10 +16,10 @@ The CurrenciesAPI class has the following method:
 
 ## Demo
 <p align="center">
-  <img src="images/CLI(1).gif" alt="Currency Converter CLI demo" />
+  <img src="images/CLI(1).gif" alt="Currency Converter CLI demo" width="400" height="400"/>
 </p>
 <p align="center">
-  <img src="images/SWING.gif" alt="Currency Converter SWING GUI demo" />
+  <img src="images/SWING.gif" alt="Currency Converter SWING GUI demo" width="400" height="400"/>
 </p>
 
 ## Prerequisites
