@@ -16,7 +16,7 @@ The CurrenciesAPI class has the following method:
 
 ## Demo
 <p align="center">
-  <img src="images/CLI.gif" alt="Currency Converter CLI demo" />
+  <img src="images/CLI(1).gif" alt="Currency Converter CLI demo" />
 </p>
 <p align="center">
   <img src="images/SWING.gif" alt="Currency Converter SWING GUI demo" />
