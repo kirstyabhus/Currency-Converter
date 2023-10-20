@@ -13,7 +13,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 // API returns JSON data so Gson library is used to deserialize the JSON response into Java objects.
-
 public class CurrenciesAPI {
     private final String apiKey;
 

@@ -25,12 +25,10 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         // find the exceptions that will occur from the inputs
         double exceptionValue = currencyExceptions.findException(sourceCurrencyCode, destinationCurrencyCode, amount,
                 currenciesGBP);
-
         // if theres an exception, return 0.0
         if (exceptionValue == 0.0) {
             return 0.0;
         }
-
         // calculate the destination amount, after getting the exchange rate
         double destinationAmount = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
 
@@ -42,7 +40,6 @@ public class BasicCurrencyConverter implements CurrencyConverter {
         // create & store a String set of the currency codes from the exchangeRates
         // HashMap
         Set<String> currencyCodesSet = new HashSet<>(currenciesGBP.keySet());
-
         // return a String array containing the currencyCode elements of the set
         // new array is the same size as the currency code set
         String[] currencyCodes = currencyCodesSet.toArray(new String[currencyCodesSet.size()]);

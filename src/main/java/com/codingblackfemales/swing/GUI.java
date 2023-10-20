@@ -29,7 +29,7 @@ public class GUI {
         // exit out of application when close button clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // set the size of the frame
-        frame.setSize(500, 490);
+        frame.setSize(504, 490);
         // prevent resizing of the frame
         frame.setResizable(false);
 
@@ -74,8 +74,9 @@ public class GUI {
         // a space to display error messages
         JLabel errorMessageLabel = new JLabel();
 
-        // bring the available currency codes from the API to this class
         final String apiKey = "8d246aca316c5a6059a8bd96";
+
+        // bring the available currency codes from the API to this class
         CurrenciesAPI currenciesAPI = new CurrenciesAPI(apiKey);
         ArrayList<String> currenciesList = new ArrayList<String>(currenciesAPI.getCurrencyCodes());
         // convert the ArrayList into an array for the comboBox
@@ -142,7 +143,7 @@ public class GUI {
                     outputField.setText(String.valueOf(convertedAmount));
                 } catch (NumberFormatException ex) {
                     // if user input is not a number, display the message
-                    errorMessageLabel.setText("Invalid input. Please enter a valid amount.");
+                    errorMessageLabel.setText("Please enter a valid amount.");
                 }
             }
 
