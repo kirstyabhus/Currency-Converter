@@ -16,7 +16,10 @@ The CurrenciesAPI class has the following method:
 
 ## Demo
 <p align="center">
-  <img src="https://github.com/cbfacademy/java-currency-converter-assessment-kirstyabhus/blob/main/images/Currency%20Converter%20Demo.gif" alt="Currency Converter demo" />
+  <img src="https://github.com/cbfacademy/java-currency-converter-assessment-kirstyabhus/blob/main/images/CLI.mp4" alt="Currency Converter CLI demo" />
+</p>
+<p align="center">
+  <img src="https://github.com/cbfacademy/java-currency-converter-assessment-kirstyabhus/blob/main/images/SWING.mp4" alt="Currency Converter SWING GUI demo" />
 </p>
 
 ## Prerequisites
