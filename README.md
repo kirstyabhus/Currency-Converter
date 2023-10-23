@@ -46,46 +46,6 @@ Before using the API option of the Currency Converter, you need to obtain an API
 
 ## How to Install and Run this project
 
-1. Clone this repository to your local machine.
-```bash
-git clone git@github.com:cbfacademy/java-currency-converter-assessment-kirstyabhus.git
-cd java-currency-converter-assessment-kirstyabhus
-git checkout -b ${your-branch-name}
-```
-
-3. Open in Visual Studio Code (or your preferred IDE).
-4. Install the project dependencies and validate your project by running the following command in a terminal at the root of your project:
-
-```bash
-./mvnw clean validate
-```
-
-If you are on a Windows machine, that will be:
-
-```bat
-mvnw clean validate
-```
-
-You should see the following console output:
-
-```bash
-./mvnw clean validate
-
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] --------------< com.codingblackfemales:java-currency-converter-assessment >-----------------
-[INFO] Building java-currency-converter-assessment 1.0.0
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] --- maven-clean-plugin:3.2.0:clean (default-clean) @ java-currency-converter-assessment ---
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.155 s
-[INFO] Finished at: 2022-11-03T20:56:09Z
-[INFO] ------------------------------------------------------------------------
-
-```
 
 ## Testing
 To ensure that the API method functions correctly, you can run the included unit test which uses JUnit and Mockito.
