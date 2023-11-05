@@ -1,6 +1,7 @@
 # Currency Converter Application (Java)
 
 An application that can convert a user-defined amount in a source currency to a destination currency. This application gives the user the option to convert currencies in the given, hard-coded class, or by using the live (daily-refreshed) exchange rates fetched from [ExchangeRate API](https://v6.exchangerate-api.com/). 
+The application has been implemented as both a command-line application and with a Swing GUI.
 ## Description
 ### Currency Converter
 #### CurrencyConverter interface
