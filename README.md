@@ -50,9 +50,3 @@ Before using the API option of the Currency Converter, you need to obtain an API
 
 ## Testing
 To ensure that the API method functions correctly, you can run the included unit test which uses JUnit and Mockito.
-
-If you are on a Windows machine, that will be:
-
-```bat
-mvnw clean validate
-```
